@@ -84,7 +84,7 @@ function adbStartPromise() { return new Promise((resolve, reject) => {
 
 // adb push promise
 function adbPushPromise() { return new Promise((resolve, reject) => {
-  glob(audioPath + "/**/*.mp3", (er, files) => {
+  glob(path.join(audioPath, "/**/*.mp3"), (er, files) => {
       Promise.each(files, (singleMusicFile) => {
         return new Promise((resolve1, reject1) => {
           let cmd = "adb push" + " " + singleMusicFile + " " + "/sdcard/Music";
@@ -118,7 +118,7 @@ function dlAudio() {
   });
 }
 
-
+// run
 dlAudio()
   .then(() => {
     return renamePromise();
@@ -128,6 +128,9 @@ dlAudio()
   })
   .then(() => {
     return adbStartPromise();
+  })
+  .then(() => {
+    return adbPushPromise();
   })
   .then(() => {
     console.log('--- done ---');
