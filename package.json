@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "glob": "^7.1.1",
+    "youtube-dl": "^1.11.1"
+  },
+  "scripts": {
+    "start": "node my_youtube_dl.js"
+  }
+}
