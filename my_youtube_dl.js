@@ -9,9 +9,11 @@ const fs = require('fs');
 const ytdl = require('youtube-dl');
 // promise
 const Promise = require("bluebird");
+
 //
 const glob = require('glob');
-
+// child process, exec
+const exec = require('child_process').exec;
 //
 const audioPath = __dirname;
 //
@@ -120,6 +122,12 @@ function dlAudio() {
 dlAudio()
   .then(() => {
     return renamePromise();
+  })
+  .then(() => {
+    return adbKillPromise();
+  })
+  .then(() => {
+    return adbStartPromise();
   })
   .then(() => {
     console.log('--- done ---');
